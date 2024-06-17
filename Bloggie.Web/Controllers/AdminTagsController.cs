@@ -14,13 +14,13 @@ public class AdminTagsController : Controller
     }
 
     [HttpGet]
-    public IActionResult AddAsync()
+    public IActionResult Add()
     {
         return View();
     }
     [HttpPost]
-    [ActionName("AddAsync")]
-    public  async Task<IActionResult>  AddAsync(AddTagRequest addTagRequest)
+    [ActionName("Add")]
+    public  IActionResult  Add(AddTagRequest addTagRequest)
     {
         //Mapping AddTagRequest to Tag domain model
         var tag = new Tag
@@ -28,8 +28,9 @@ public class AdminTagsController : Controller
             Name = addTagRequest.Name,
             DisplayName = addTagRequest.DisplayName
         }; 
-        bloggiedbContext.Tags.AddAsync(tag);
-        bloggiedbContext.SaveChanges();
+
+         bloggiedbContext.Tags.Add(tag); 
+         bloggiedbContext.SaveChanges();
 
         return View("Add");
     }
