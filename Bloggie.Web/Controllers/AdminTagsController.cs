@@ -7,10 +7,10 @@ namespace Bloggie.Web.Controllers;
 
 public class AdminTagsController : Controller
 {
-    private readonly BloggieDbContext bloggiedbContext;
+    private readonly BloggieDbContext bloggieDbContext;
     public AdminTagsController(BloggieDbContext bloggieDbContext)
     {
-       this.bloggiedbContext=bloggieDbContext;
+       this.bloggieDbContext=bloggieDbContext;
     }
 
     [HttpGet]
@@ -29,9 +29,18 @@ public class AdminTagsController : Controller
             DisplayName = addTagRequest.DisplayName
         }; 
 
-         bloggiedbContext.Tags.Add(tag); 
-         bloggiedbContext.SaveChanges();
+         bloggieDbContext.Tags.Add(tag); 
+         bloggieDbContext.SaveChanges();
 
-        return View("Add");
+         return RedirectToAction("List");
+    }
+
+    [HttpGet]
+    [ActionName("List")]
+    public IActionResult List()
+    {
+
+        var tags=bloggieDbContext.Tags.ToList();
+        return View(tags);
     }
 }
