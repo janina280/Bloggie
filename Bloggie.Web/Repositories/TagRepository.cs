@@ -1,4 +1,5 @@
-﻿using Azure;
+﻿using System.Reflection.Metadata.Ecma335;
+using Azure;
 using Bloggie.Web.Data;
 using Bloggie.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace Bloggie.Web.Repositories
 
         public async Task<Tag?> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await bloggieDbContext.Tags.FirstOrDefaultAsync(x => x.Id==id);
         }
 
         public async Task<Tag> AddAsync(Tag tag)
@@ -46,7 +47,15 @@ namespace Bloggie.Web.Repositories
 
         public async Task<Tag?> DeleteAsync(Guid id)
         {
-            await bloggieDbContext.Tags.FindAsync(id);
-        }
+            var existingTag= await bloggieDbContext.Tags.FindAsync(id);
+            if (existingTag != null)
+            {
+                bloggieDbContext.Remove(existingTag);
+                await bloggieDbContext.SaveChangesAsync(); 
+                return existingTag;
+
+            }
+            return null;
+        } 
     }
 }

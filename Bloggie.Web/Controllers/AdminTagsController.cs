@@ -49,11 +49,7 @@ public class AdminTagsController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(Guid id)
     {
-        //1st  method
-        //var tag=   bloggieDbContext.Tags.Find(id);
-
-        //2nd method
-        var tag = await bloggieDbContext.Tags.FirstOrDefaultAsync(x => x.Id == id);
+        var tag = await tagRepository.GetAsync(id);
         if (tag != null)
         {
             var editTagRequest = new EditTagRequest()
@@ -92,14 +88,12 @@ public class AdminTagsController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
     {
-        var tag = await bloggieDbContext.Tags.FindAsync(editTagRequest.Id);
-        if (tag != null)
-        {
-            bloggieDbContext.Tags.Remove(tag);
-            await bloggieDbContext.SaveChangesAsync();
+       var deletedTag= await tagRepository.DeleteAsync(editTagRequest.Id);
+       if (deletedTag != null)
+       {
+            //show succes notification
             return RedirectToAction("List");
-        }
-
+       }
         return RedirectToAction("Edit", new { id = editTagRequest.Id });
     }
 
