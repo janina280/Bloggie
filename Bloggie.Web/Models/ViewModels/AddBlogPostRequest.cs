@@ -1,4 +1,6 @@
-﻿namespace Bloggie.Web.Models.ViewModels
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Bloggie.Web.Models.ViewModels
 {
     public class AddBlogPostRequest
     {
@@ -11,5 +13,8 @@
         public string Author { get; set; }
         public bool Visible { get; set; }
         public DateTime PublishedDate { get; set; }
+
+        public IEnumerable<SelectListItem> Tags { get; set; }
+        public string SelectedTag { get; set; }
     }
 }
