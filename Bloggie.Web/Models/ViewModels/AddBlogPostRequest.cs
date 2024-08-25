@@ -4,7 +4,7 @@ namespace Bloggie.Web.Models.ViewModels
 {
     public class AddBlogPostRequest
     {
-        public string? Heading { get; set; }
+        public string Heading { get; set; }
         public string PageTitle { get; set; }
         public string Content { get; set; }
         public string ShortDescription { get; set; }
@@ -15,6 +15,6 @@ namespace Bloggie.Web.Models.ViewModels
         public DateTime PublishedDate { get; set; }
 
         public IEnumerable<SelectListItem> Tags { get; set; }
-        public string SelectedTag { get; set; }
+        public string[] SelectedTags { get; set; } = Array.Empty<string>();
     }
 }
