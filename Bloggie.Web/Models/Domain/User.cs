@@ -1,9 +1,8 @@
-﻿namespace Bloggie.Web.Models.Domain
+﻿namespace Bloggie.Web.Models.Domain;
+
+public class User
 {
-    public class User
-    {
-        public Guid Id { get; set; }
-        public string UserName { get; set; }
-        public string EmailAddress { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string UserName { get; set; }
+    public string EmailAddress { get; set; }
 }

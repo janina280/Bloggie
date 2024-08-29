@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Bloggie.Web.Models.ViewModels
+namespace Bloggie.Web.Models.ViewModels;
+
+public class LoginModel
 {
-    public class LoginModel
-    {
-        [Required]
-        public string Username { get; set; }
+    [Required]
+    public string Username { get; set; }
 
-        [Required]
-        [MinLength(6, ErrorMessage = "Password has to be at least 6 characters")]
-        public string Password { get; set; }
+    [Required]
+    [MinLength(6, ErrorMessage = "Password has to be at least 6 characters")]
+    public string Password { get; set; }
 
-        public string? ReturnUrl { get; set; }
-    }
+    public string? ReturnUrl { get; set; }
 }

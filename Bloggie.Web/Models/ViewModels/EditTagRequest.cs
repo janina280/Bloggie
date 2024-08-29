@@ -1,9 +1,8 @@
-﻿namespace Bloggie.Web.Models.ViewModels
+﻿namespace Bloggie.Web.Models.ViewModels;
+
+public class EditTagRequest
 {
-    public class EditTagRequest
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string DisplayName { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string DisplayName { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿namespace Bloggie.Web.Models.Domain
+﻿namespace Bloggie.Web.Models.Domain;
+
+public class BlogPostLike
 {
-    public class BlogPostLike
-    {
-        public Guid Id { get; set; }
-        public Guid BlogPostId { get; set; }
-        public Guid UserId { get; set; }
-    }
+    public Guid Id { get; set; }
+    public Guid BlogPostId { get; set; }
+    public Guid UserId { get; set; }
 }
