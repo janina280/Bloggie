@@ -1,4 +1,5 @@
 ﻿using Bloggie.Web.Repositories;
+using EzTool.SDK.Infra.GreenAssembly.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

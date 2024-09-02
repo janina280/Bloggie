@@ -1,4 +1,6 @@
-﻿namespace Bloggie.Web.Repositories
+﻿using EzTool.SDK.Infra.GreenAssembly.Interfaces;
+
+namespace Bloggie.Web.Repositories
 {
     public interface IImageRepository
     {
