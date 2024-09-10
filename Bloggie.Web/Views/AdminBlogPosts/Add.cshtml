@@ -31,18 +31,26 @@
             </label>
             <input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" />
         </div>
+
+        <div class="mb-3">
+            <label class="form-label">Featured Image Upload</label>
+            <input type="file" id="featuredImageUpload" class="form-control" />
+        </div>
+
         <div class="mb-3">
             <label class="form-label">
                 Featured Image URL
             </label>
             <input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" />
         </div>
+
         <div class="mb-3">
             <label class="form-label">
                 URL Handle
             </label>
             <input type="text" class="form-control" id="urlHandle" asp-for="UrlHandle" />
         </div>
+
         <div class="mb-3">
             <label class="form-label">
                 Published Date
@@ -82,9 +90,32 @@
     </form>
 </div>
 
-            @section Scripts
-            {
-                <script>
-                    var editor = new FroalaEditor('#content');
-                </script>
-            }
+@section Scripts
+{
+    <script>
+
+        var editor = new FroalaEditor('#content');
+
+        const featuredUploadElement = document.getElementById('featuredImageUpload');
+        
+        async function uploadFeaturedImage(e) {
+            console.log(e.target.files[0]);
+
+            let data = new FormData();
+            data.append('file', e.target.files[0]);
+            await fetch('/api/imagess',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': '*/*',
+                    },
+                    body: data
+                }).then(result => {
+                console.log(result);
+            });
+        }
+
+
+        featuredUploadElement.addEventListener('change', uploadFeaturedImage);
+    </script>
+}
